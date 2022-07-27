@@ -99,16 +99,16 @@ public class TrackedPrefab : MonoBehaviour
         if(swipeDirection.magnitude < swipeTolerance * Screen.width) return;
         
         // Result is 1 if swipe is perfectly to the right, -1 if perfectly to the left
-        float similarToRight = Vector2.Dot(Vector2.right, swipeDirection);
+        float similarToLeft = Vector2.Dot(Vector2.left, swipeDirection);
         
-        if(similarToRight > 0) NextObject();
+        if(similarToLeft > 0) NextObject();
         else PreviousObject();
     }
 
     private void NextObject()
     {
         currentPrefabIndex++;
-        if (currentPrefabIndex < prefabArray.Length - 1) currentPrefabIndex = 0; // Avoid overflow
+        if (currentPrefabIndex > prefabArray.Length - 1) currentPrefabIndex = 0; // Avoid overflow
 
         LoadObject();
     }
@@ -122,8 +122,8 @@ public class TrackedPrefab : MonoBehaviour
 
     private void LoadObject()
     {
+        // Destroy old object and load new one
         if(currentGameObject) Destroy(currentGameObject);
-        
         currentGameObject = Instantiate(prefabArray[currentPrefabIndex], transform);
     }
 }
