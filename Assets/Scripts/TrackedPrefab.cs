@@ -16,7 +16,7 @@ public class TrackedPrefab : MonoBehaviour
     
     private void Start()
     {
-        Instantiate(prefabArray[currentPrefabIndex], transform);
+        LoadObject();
     }
 
     private void Update()
@@ -63,6 +63,7 @@ public class TrackedPrefab : MonoBehaviour
         // Swipe too small; ignore it (Should be scaled with screen resolution)
         if(swipeDirection.magnitude < swipeTolerance * Screen.width) return;
         
+        // Result is 1 if swipe is perfectly to the right, -1 if perfectly to the left
         float similarToRight = Vector2.Dot(Vector2.right, swipeDirection);
         
         if(similarToRight > 0) NextObject();
@@ -71,10 +72,23 @@ public class TrackedPrefab : MonoBehaviour
 
     private void NextObject()
     {
-        
+        currentPrefabIndex++;
+        if (currentPrefabIndex < prefabArray.Length - 1) currentPrefabIndex = 0; // Avoid overflow
+
+        LoadObject();
     }
     private void PreviousObject()
     {
+        currentPrefabIndex--;
+        if (currentPrefabIndex < 0) currentPrefabIndex = prefabArray.Length - 1; // Avoid overflow
+
+        LoadObject();
+    }
+
+    private void LoadObject()
+    {
+        if(currentGameObject) Destroy(currentGameObject);
         
+        currentGameObject = Instantiate(prefabArray[currentPrefabIndex], transform);
     }
 }
