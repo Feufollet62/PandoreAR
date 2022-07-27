@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -8,12 +10,17 @@ public class PlaceObject : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject objectToPlace;
 
-    private Camera mainCamera;
+    [Header("UI")]
+    [SerializeField] private Button buttonPlaceObject;
+    [SerializeField] private GameObject buttonControlButtons;
     
+    private Camera mainCamera;
     private ARRaycastManager arRay;
     private Pose placementPose;
 
     private bool raycastIsValid;
+
+    private GameObject placedObject;
 
     private void Start()
     {
@@ -23,13 +30,16 @@ public class PlaceObject : MonoBehaviour
 
     private void Update()
     {
+        // If object is already placed, don't do anything
+        if(placedObject) return;
+        
         UpdatePlacementPose();
         UpdatePlacementIndicator();
 
         // All conditions are met: raycast is valid and user input detected
         if (raycastIsValid && Input.touchCount != 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
+            placedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
         }
     }
 
@@ -67,5 +77,10 @@ public class PlaceObject : MonoBehaviour
         {
             indicator.SetActive(false);
         }
+    }
+
+    private void Reset()
+    {
+        GameManager.Instance.LoadObjectPlacement();
     }
 }
