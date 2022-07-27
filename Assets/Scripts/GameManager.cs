@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     private void SingletonCheck()
     {
         if(Instance) Destroy(gameObject);
-        else Instance = this;
+        
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Currently simple loading but could be improved with Async loading + a loading screen
