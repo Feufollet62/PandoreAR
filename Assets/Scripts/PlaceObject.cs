@@ -7,14 +7,17 @@ public class PlaceObject : MonoBehaviour
 {
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject objectToPlace;
+
+    private Camera mainCamera;
     
     private ARRaycastManager arRay;
     private Pose placementPose;
 
-    private bool isValid;
+    private bool raycastIsValid;
 
     private void Start()
     {
+        mainCamera = Camera.main;
         arRay = FindObjectOfType<ARRaycastManager>();
     }
 
@@ -23,7 +26,8 @@ public class PlaceObject : MonoBehaviour
         UpdatePlacementPose();
         UpdatePlacementIndicator();
 
-        if (isValid && Input.touchCount != 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        // All conditions are met: raycast is valid and user input detected
+        if (raycastIsValid && Input.touchCount != 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
         }
@@ -31,26 +35,30 @@ public class PlaceObject : MonoBehaviour
 
     private void UpdatePlacementPose()
     {
-        Vector2 screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(.5f, .5f));
-        var hits = new List<ARRaycastHit>();
+        List<ARRaycastHit> hits = new List<ARRaycastHit>();
+        Vector2 screenCenter = mainCamera.ViewportToScreenPoint(new Vector3(.5f, .5f));
+
+        // Raycast from screen center to look for planes
         arRay.Raycast(screenCenter, hits, TrackableType.Planes);
-
-        isValid = hits.Count != 0;
         
-        if (isValid)
-        {
-            placementPose = hits[0].pose;
+        raycastIsValid = hits.Count != 0;
+        if (!raycastIsValid) return;
+        
+        // Get the pose of the first valid raycast
+        placementPose = hits[0].pose;
 
-            Vector3 camForward = Camera.main.transform.forward;
-            Vector3 camForwardProjected = new Vector3(camForward.x, 0, camForward.z);
+        // Align with camera
+        Vector3 camForward = mainCamera.transform.forward;
+        Vector3 camForwardProjected = new Vector3(camForward.x, 0, camForward.z);
 
-            placementPose.rotation = Quaternion.LookRotation(camForwardProjected);
-        }
+        placementPose.rotation = Quaternion.LookRotation(camForwardProjected);
     }
 
     private void UpdatePlacementIndicator()
     {
-        if (isValid)
+        // Makes indicator invisible if no valid surface is detected
+        
+        if (raycastIsValid)
         {
             indicator.SetActive(true);
             indicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
