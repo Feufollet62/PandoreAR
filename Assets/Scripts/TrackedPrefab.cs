@@ -11,8 +11,14 @@ public class TrackedPrefab : MonoBehaviour
     
     // Touch controls
     [Range(0,1)] [SerializeField] private float swipeTolerance = .05f;
+    
+    // Swiping
     private Vector2 swipeStartPos;
     private Vector2 swipeDirection;
+    
+    //Pinching
+    private float pinchInitialDistance;
+    private Vector3 pinchInitialScale;
     
     private void Start()
     {
@@ -54,7 +60,36 @@ public class TrackedPrefab : MonoBehaviour
         // Pinch
         if (Input.touchCount == 2)
         {
-            // Pinch behavior goes here
+            Touch touchZero = Input.GetTouch(0); 
+            Touch touchOne = Input.GetTouch(1);
+
+            // If a touch ends / is cancelled do nothing
+            if(touchZero.phase == TouchPhase.Ended || touchZero.phase == TouchPhase.Canceled
+            || touchOne.phase == TouchPhase.Ended || touchOne.phase == TouchPhase.Canceled) 
+            {
+                return;
+            }
+
+            // User started pinching
+            if(touchZero.phase == TouchPhase.Began || touchOne.phase == TouchPhase.Began)
+            {
+                // track the initial values
+                pinchInitialDistance = Vector2.Distance(touchZero.position, touchOne.position);
+                pinchInitialScale = transform.localScale;
+            }
+
+            // User is moving fingers or stationary
+            else
+            {
+                float currentDistance = Vector2.Distance(touchZero.position, touchOne.position);
+
+                // If pinchInitialDistance too close to 0, it means it could be faulty input
+                if (Mathf.Approximately(pinchInitialDistance, 0)) return;
+
+                // Multiplication avoids negative scale
+                float factor = currentDistance / pinchInitialDistance;
+                transform.localScale = pinchInitialScale * factor;
+            }
         }
     }
 
