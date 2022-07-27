@@ -1,0 +1,1 @@
+Je n'ai pas rencontré de difficultés particulières, mais je n'ai tout simplement pas eu le temps de tout finir.
