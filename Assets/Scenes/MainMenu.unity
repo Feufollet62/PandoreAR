@@ -202,7 +202,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &47482018
 RectTransform:
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadIconTransform: {fileID: 296314528}
-  fadeDuration: 0.01
+  fadeSpeed: 0.01
   loadRotationSpeed: 50
 --- !u!1 &113430077
 GameObject:
