@@ -23,11 +23,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    IEnumerator LoadSceneAsync(string sceneName) 
+    IEnumerator LoadSceneAsync(string sceneName, float addedLoadTime) 
     {
         loadingScreen.FadeIn();
 
-        yield return new WaitForSeconds(2f);
+        // Artificially increase load times; can be better for UX.
+        // It would be weird for the loading screen to flash for .01 seconds and immediately disappear...
+        yield return new WaitForSeconds(addedLoadTime); 
         
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
 
@@ -35,23 +37,22 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-
-        print("done");
+        
         loadingScreen.FadeOut();
     }
     
     public void LoadMainMenu()
     {
-        StartCoroutine(LoadSceneAsync("MainMenu"));
+        StartCoroutine(LoadSceneAsync("MainMenu", 1f));
     }
 
     public void LoadImageTracking()
     {
-        StartCoroutine(LoadSceneAsync("ImageTracking"));
+        StartCoroutine(LoadSceneAsync("ImageTracking", 2f));
     }
     
     public void LoadObjectPlacement()
     {
-        StartCoroutine(LoadSceneAsync("ObjectPlacement"));
+        StartCoroutine(LoadSceneAsync("ObjectPlacement", 2f));
     }
 }
