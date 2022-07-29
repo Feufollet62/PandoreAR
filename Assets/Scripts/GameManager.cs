@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour
 {
     // Singleton
     public static GameManager Instance;
-    [SerializeField] private GameObject loadingScreen;
+    
+    [SerializeField] private LoadingScreen loadingScreen;
 
     private void Awake()
     {
         SingletonCheck();
+        DontDestroyOnLoad(loadingScreen);
     }
     
     private void SingletonCheck()
@@ -19,23 +21,25 @@ public class GameManager : MonoBehaviour
         
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(loadingScreen);
     }
 
-    IEnumerator LoadSceneAsync(string sceneName)
+    IEnumerator LoadSceneAsync(string sceneName) 
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
-        loadingScreen.SetActive(true);
+        loadingScreen.FadeIn();
+
+        yield return new WaitForSeconds(2f);
         
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+
         while (!op.isDone)
         {
             yield return null;
         }
-        
-        loadingScreen.SetActive(false);
-    }
 
-    // Currently simple loading but could be improved with Async loading + a loading screen
+        print("done");
+        loadingScreen.FadeOut();
+    }
+    
     public void LoadMainMenu()
     {
         StartCoroutine(LoadSceneAsync("MainMenu"));
