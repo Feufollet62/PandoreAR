@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -10,18 +8,22 @@ public class PlaceObject : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject objectToPlace;
 
+    [Header("Variables")] 
+    [SerializeField] private float rotationAngle;
+    [SerializeField] private float scaleFactor;
+
     [Header("UI")]
-    [SerializeField] private Button buttonPlaceObject;
-    [SerializeField] private GameObject buttonControlButtons;
+    [SerializeField] private GameObject buttonPlaceObject;
+    [SerializeField] private GameObject buttonControlObject;
     
     private Camera mainCamera;
     private ARRaycastManager arRay;
     private Pose placementPose;
 
-    private bool raycastIsValid;
-
     private GameObject placedObject;
-
+    
+    private bool raycastIsValid;
+    
     private void Start()
     {
         mainCamera = Camera.main;
@@ -40,6 +42,8 @@ public class PlaceObject : MonoBehaviour
         if (raycastIsValid && Input.touchCount != 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             placedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
+            buttonControlObject.SetActive(true);
+            raycastIsValid = false;
         }
     }
 
@@ -71,15 +75,41 @@ public class PlaceObject : MonoBehaviour
         if (raycastIsValid)
         {
             indicator.SetActive(true);
+            buttonPlaceObject.SetActive(true);
             indicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
         else
         {
             indicator.SetActive(false);
+            buttonPlaceObject.SetActive(false);
         }
     }
 
-    private void Reset()
+    public void Scale(bool scaleUp)
+    {
+        // X, Y, and Z should all be the same
+        float initialScale = placedObject.transform.localScale.x;
+        float newScale = initialScale;
+        
+        
+        if (scaleUp) // This is wrong: won't be uniform
+        {
+            initialScale *= scaleFactor;
+        }
+        else
+        {
+            initialScale *= -scaleFactor;
+        }
+        
+        placedObject.transform.localScale = Vector3.one * newScale;
+    }
+
+    public void Rotate()
+    {
+        placedObject.transform.Rotate(0,rotationAngle,0);
+    }
+
+    public void Reset()
     {
         GameManager.Instance.LoadObjectPlacement();
     }
