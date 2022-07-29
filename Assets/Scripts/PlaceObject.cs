@@ -9,8 +9,8 @@ public class PlaceObject : MonoBehaviour
     [SerializeField] private GameObject objectToPlace;
 
     [Header("Variables")] 
-    [SerializeField] private float rotationAngle;
-    [SerializeField] private float scaleFactor;
+    [SerializeField] private float rotationAngle = 45f;
+    [SerializeField] private float scaleFactor = 2;
 
     [Header("UI")]
     [SerializeField] private GameObject buttonPlaceObject;
@@ -94,11 +94,11 @@ public class PlaceObject : MonoBehaviour
         
         if (scaleUp) // This is wrong: won't be uniform
         {
-            initialScale *= scaleFactor;
+            newScale *= scaleFactor;
         }
         else
         {
-            initialScale *= -scaleFactor;
+            newScale *= 1/scaleFactor;
         }
         
         placedObject.transform.localScale = Vector3.one * newScale;

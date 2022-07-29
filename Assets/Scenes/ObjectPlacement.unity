@@ -187,8 +187,8 @@ MonoBehaviour:
   indicator: {fileID: 57826027}
   objectToPlace: {fileID: 3311125065517116414, guid: 9d49f9cf4ce99fc40a221ce1d847de7b,
     type: 3}
-  rotationAngle: 0
-  scaleFactor: 0
+  rotationAngle: 15
+  scaleFactor: 1.5
   buttonPlaceObject: {fileID: 272780290}
   buttonControlObject: {fileID: 797705185}
 --- !u!114 &6861366
