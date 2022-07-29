@@ -31,16 +31,16 @@ public class LoadingScreen : MonoBehaviour
 
     private void ManageFade()
     {
-        //if (finishedFade) return;
-        
         // Might not be the best in terms of performance
-        float targetAlpha = 1f;
-        targetAlpha = isDisplayed ? 1 : 0;
+        // Possible improvement: isFading bool, add here if(!isFading) return;
         
+        float targetAlpha = isDisplayed ? 1 : 0;
+        
+        // Lerp alpha of every image and text
         foreach (Image image in imagesAll)
         {
             Color newColor = image.color;
-            newColor.a = Mathf.Lerp(newColor.a, targetAlpha, fadeSpeed);
+            newColor.a = Mathf.Lerp(newColor.a, targetAlpha, fadeSpeed * Time.deltaTime);
 
             image.color = newColor;
         }
@@ -48,12 +48,13 @@ public class LoadingScreen : MonoBehaviour
         foreach (Text text in textAll)
         {
             Color newColor = text.color;
-            newColor.a = Mathf.Lerp(newColor.a, targetAlpha, fadeSpeed);
+            newColor.a = Mathf.Lerp(newColor.a, targetAlpha, fadeSpeed * Time.deltaTime);
 
             text.color = newColor;
         }
     }
 
+    // These might not be necessary
     public void FadeIn()
     {
         isDisplayed = true;
