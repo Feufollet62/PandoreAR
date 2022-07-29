@@ -1286,6 +1286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 47482019}
+  openDyslexic: {fileID: 12800000, guid: 3762d039f68873b49a9755d3a4d1a20e, type: 3}
 --- !u!1 &1369316309
 GameObject:
   m_ObjectHideFlags: 0
