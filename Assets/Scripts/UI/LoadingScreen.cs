@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIRotate : MonoBehaviour
+public class LoadingScreen : MonoBehaviour
 {
     [SerializeField] private GameObject loadIconObject;
 
@@ -25,7 +25,7 @@ public class UIRotate : MonoBehaviour
         tr.Rotate(Vector3.forward, -loadRotationSpeed * Time.deltaTime);
     }
 
-    private void FadeIn(float duration)
+    public void FadeIn(float duration)
     {
         foreach (Image image in imagesAll)
         {
@@ -38,7 +38,7 @@ public class UIRotate : MonoBehaviour
         }
     }
     
-    private void FadeOut(float duration)
+    public void FadeOut(float duration)
     {
         foreach (Image image in imagesAll)
         {
