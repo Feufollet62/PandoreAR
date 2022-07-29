@@ -1,11 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     // Singleton
-    
     public static GameManager Instance;
+    [SerializeField] private GameObject loadingScreen;
 
     private void Awake()
     {
@@ -18,21 +19,35 @@ public class GameManager : MonoBehaviour
         
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(loadingScreen);
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+        loadingScreen.SetActive(true);
+        
+        while (!op.isDone)
+        {
+            yield return null;
+        }
+        
+        loadingScreen.SetActive(false);
     }
 
     // Currently simple loading but could be improved with Async loading + a loading screen
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(LoadSceneAsync("MainMenu"));
     }
 
     public void LoadImageTracking()
     {
-        SceneManager.LoadScene("ImageTracking");
+        StartCoroutine(LoadSceneAsync("ImageTracking"));
     }
     
     public void LoadObjectPlacement()
     {
-        SceneManager.LoadScene("ObjectPlacement");
+        StartCoroutine(LoadSceneAsync("ObjectPlacement"));
     }
 }
