@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         dyslexic = PlayerPrefs.GetInt("Using Dyslexic") == 1; // 1 = true, 0 (and everything else) = false
     }
 
-    private void FontsToDyslexic()
+    public void FontsToDyslexic()
     {
         // Changes all text in the scene to OpenDyslexic
         Text[] allText = FindObjectsOfType<Text>();
