@@ -5,13 +5,14 @@ public class LoadingScreen : MonoBehaviour
 {
     [SerializeField] private RectTransform loadIconTransform;
 
-    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float fadeSpeed = 1f;
     [SerializeField] private float loadRotationSpeed = 50f;
     
     private Image[] imagesAll;
     private Text[] textAll;
 
     private bool isDisplayed = false;
+    private bool finishedFade = true;
     
     private void Start()
     {
@@ -30,62 +31,36 @@ public class LoadingScreen : MonoBehaviour
 
     private void ManageFade()
     {
-        print("1");
-        if (isDisplayed)
-        {
-            print("2");
-            foreach (Image image in imagesAll)
-            {
-                image.CrossFadeAlpha(1,fadeDuration,false);
-                print(image.color.a);
-            }
+        //if (finishedFade) return;
         
-            foreach (Text text in textAll)
-            {
-                text.CrossFadeAlpha(1,fadeDuration,false);
-                print(text.color.a);
-            }
-        }
-        else
-        {
-            foreach (Image image in imagesAll)
-            {
-                image.CrossFadeAlpha(0.00392156863f,fadeDuration,false);
-            }
+        // Might not be the best in terms of performance
+        float targetAlpha = 1f;
+        targetAlpha = isDisplayed ? 1 : 0;
         
-            foreach (Text text in textAll)
-            {
-                text.CrossFadeAlpha(0.00392156863f,fadeDuration,false);
-            }
-        }
-    }
-
-    public void FadeIn()
-    {
-        isDisplayed = true;
-        
-        // Dumb bug with CrossFadeAlpha; if initial alpha value is 0 it doesn't work...
-        // 0.00392156863 is a value of 1 alpha in RGB
         foreach (Image image in imagesAll)
         {
             Color newColor = image.color;
-            newColor.a = 0.00392156863f;
-            
+            newColor.a = Mathf.Lerp(newColor.a, targetAlpha, fadeSpeed);
+
             image.color = newColor;
         }
         
         foreach (Text text in textAll)
         {
             Color newColor = text.color;
-            newColor.a = 0.00392156863f;
-            
+            newColor.a = Mathf.Lerp(newColor.a, targetAlpha, fadeSpeed);
+
             text.color = newColor;
         }
+    }
+
+    public void FadeIn()
+    {
+        isDisplayed = true;
     }
     
     public void FadeOut()
     {
         isDisplayed = false;
-        print(isDisplayed);
     }
 }
