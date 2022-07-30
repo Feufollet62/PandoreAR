@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2dbe21f4baff64aaaa37d2f920f68c, type: 3}
+  m_Name: TableauCoupleDeFiances
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5635883594617693043, guid: 7c344adfe46fe7345b818bbca6059917, type: 3}
+  initialScale: 1
+  title: "Couple de fianc\xE9s"
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  texture: {fileID: 2800000, guid: 4c134c82f81ad894ea8f02cea51c1acc, type: 3}

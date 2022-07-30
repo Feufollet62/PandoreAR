@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728873792268879454}
   m_Layer: 0
-  m_Name: TableauLesAmants
+  m_Name: "TableauCoupleDeFianc\xE9s"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

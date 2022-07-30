@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New AR Object", menuName = "ScriptableObjects/ObjectAR", order = 1)]
+[CreateAssetMenu(fileName = "New AR Object", menuName = "ScriptableObjects/AR Object", order = 1)]
 public class ARObject : ScriptableObject
 {
     public GameObject prefab;
