@@ -348,12 +348,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 985292352}
-  m_Father: {fileID: 1537937781}
-  m_RootOrder: 3
+  m_Father: {fileID: 1371728882}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 149.99994}
   m_SizeDelta: {x: -400, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132067757
@@ -710,12 +710,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1537937781}
-  m_RootOrder: 1
+  m_Father: {fileID: 1371728882}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -450}
+  m_AnchoredPosition: {x: 0, y: -449.99994}
   m_SizeDelta: {x: -140, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &471988745
@@ -1062,15 +1062,15 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621110952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1036000986}
   - {fileID: 1540114986}
-  m_Father: {fileID: 1537937781}
-  m_RootOrder: 2
+  m_Father: {fileID: 1371728882}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 639492919}
   - component: {fileID: 639492920}
   m_Layer: 5
-  m_Name: ToggleDyslexic (3)
+  m_Name: TogglePlaceholder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,19 +1268,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1537937782}
-        m_TargetAssemblyTypeName: MainMenuOptions, Assembly-CSharp
-        m_MethodName: ToggleDyslexic
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &657667884
 GameObject:
@@ -2062,7 +2050,7 @@ GameObject:
   - component: {fileID: 1286459618}
   - component: {fileID: 1286459619}
   m_Layer: 5
-  m_Name: ToggleDyslexic (1)
+  m_Name: TogglePlaceholder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2136,19 +2124,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1537937782}
-        m_TargetAssemblyTypeName: MainMenuOptions, Assembly-CSharp
-        m_MethodName: ToggleDyslexic
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1351019002
 GameObject:
@@ -2274,6 +2250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 47482019}
   openDyslexic: {fileID: 12800000, guid: 3762d039f68873b49a9755d3a4d1a20e, type: 3}
+  usingDyslexic: 0
 --- !u!1 &1369316309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,6 +2331,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369316309}
   m_CullTransparentMesh: 1
+--- !u!1 &1371728881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371728882}
+  m_Layer: 5
+  m_Name: MainMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1371728882
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371728881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 471988744}
+  - {fileID: 621110953}
+  - {fileID: 132067756}
+  m_Father: {fileID: 1537937781}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1433984734
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,9 +2544,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 113430078}
-  - {fileID: 471988744}
-  - {fileID: 621110953}
-  - {fileID: 132067756}
+  - {fileID: 1371728882}
   - {fileID: 1948598077}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -2552,8 +2566,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d075c5ed4177ef4f9c05df43de09e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuMain: {fileID: 0}
+  menuMain: {fileID: 1371728881}
   menuOptions: {fileID: 1948598076}
+  toggleDyslexic: {fileID: 939227540}
 --- !u!1 &1540114985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,7 +3177,7 @@ RectTransform:
   m_Children:
   - {fileID: 1576695442}
   m_Father: {fileID: 1537937781}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3248,7 +3263,7 @@ GameObject:
   - component: {fileID: 2010384756}
   - component: {fileID: 2010384757}
   m_Layer: 5
-  m_Name: ToggleDyslexic (2)
+  m_Name: TogglePlaceholder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3322,19 +3337,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1537937782}
-        m_TargetAssemblyTypeName: MainMenuOptions, Assembly-CSharp
-        m_MethodName: ToggleDyslexic
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &2056036209
 GameObject:

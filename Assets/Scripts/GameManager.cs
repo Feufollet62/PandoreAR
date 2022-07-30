@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private LoadingScreen loadingScreen;
     [SerializeField] private Font openDyslexic;
-    private bool dyslexic = false;
+    public bool usingDyslexic = false;
     
     private void Awake()
     {
@@ -21,34 +21,33 @@ public class GameManager : MonoBehaviour
     
     private void SingletonCheck()
     {
-        if(Instance) Destroy(gameObject);
-        
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if(Instance != null) Destroy(gameObject);
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void LoadPrefs()
     {
-        if (!PlayerPrefs.HasKey("Using Dyslexic"))
-        {
-            PlayerPrefs.SetInt("Using Dyslexic", 0);
-        }
+        // If no key is found, create it (Default is false
+        if (!PlayerPrefs.HasKey("Using Dyslexic")) PlayerPrefs.SetInt("Using Dyslexic", 0);
         
-        dyslexic = PlayerPrefs.GetInt("Using Dyslexic") == 1; // 1 = true, 0 (and everything else) = false
+        if (PlayerPrefs.GetInt("Using Dyslexic") == 1) usingDyslexic = true;
     }
 
-    public void FontsToDyslexic()
+    public void FontsToDyslexic(Text[] texts)
     {
-        // Changes all text in the scene to OpenDyslexic
-        Text[] allText = FindObjectsOfType<Text>();
-
-        foreach (Text text in allText)
+        // Changes all fonts to OpenDyslexic
+        
+        foreach (Text text in texts)
         {
             text.font = openDyslexic;
         }
     }
 
-    IEnumerator LoadSceneAsync(string sceneName, float addedLoadTime) 
+    private IEnumerator LoadSceneAsync(string sceneName, float addedLoadTime) 
     {
         loadingScreen.FadeIn();
 
@@ -63,14 +62,12 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         
-        
-        if (dyslexic) FontsToDyslexic();
-        
         loadingScreen.FadeOut();
     }
     
     public void LoadMainMenu()
     {
+        // Weird glitch
         StartCoroutine(LoadSceneAsync("MainMenu", 1f));
     }
 
