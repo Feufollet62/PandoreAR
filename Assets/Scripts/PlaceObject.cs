@@ -18,6 +18,7 @@ public class PlaceObject : MonoBehaviour
     private Pose placementPose;
 
     private GameObject placedObject;
+    private bool objectWasSpawned;
     
     private bool raycastIsValid;
     
@@ -31,7 +32,7 @@ public class PlaceObject : MonoBehaviour
     private void Update()
     {
         // If object is already placed, don't do anything
-        if(placedObject) return;
+        if(objectWasSpawned) return;
         
         UpdatePlacementPose();
         UpdatePlacementIndicator();
@@ -39,9 +40,11 @@ public class PlaceObject : MonoBehaviour
         // All conditions are met: raycast is valid and user input detected
         if (raycastIsValid && Input.touchCount != 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
+            objectWasSpawned = true;
+            
             placedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
-            ui.ShowPlaceObject();
-            raycastIsValid = false;
+            ui.ShowControlObject();
+            ui.HidePlaceObject();
         }
     }
 

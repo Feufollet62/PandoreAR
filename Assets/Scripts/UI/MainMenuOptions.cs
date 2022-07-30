@@ -24,7 +24,6 @@ public class MainMenuOptions : MonoBehaviour
         menuOptions.SetActive(true);
 
         allText = GetComponentsInChildren<Text>();
-        print(allText.Length);
         if(gm.usingDyslexic) gm.FontsToDyslexic(allText);
         
         menuOptions.SetActive(false);
