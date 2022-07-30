@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class GameManager : MonoBehaviour
 {
     // Singleton
@@ -17,7 +16,7 @@ public class GameManager : MonoBehaviour
         LoadPrefs();
         DontDestroyOnLoad(loadingScreen);
     }
-    
+
     private void SingletonCheck()
     {
         if(Instance != null) Destroy(gameObject);
@@ -52,7 +51,9 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-        
+
+        // Subscribe this to ARSession.stateChanged ?
+        // So that loading screen fades away only when the camera is active
         loadingScreen.FadeOut();
     }
     
