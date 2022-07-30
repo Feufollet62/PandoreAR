@@ -112,6 +112,7 @@ public class TrackedPrefab : MonoBehaviour
 
         LoadObject();
     }
+    
     private void PreviousObject()
     {
         currentPrefabIndex--;

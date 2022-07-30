@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabArray:
   - {fileID: 5635883594617693043, guid: 7c344adfe46fe7345b818bbca6059917, type: 3}
+  - {fileID: 8689760280453713793, guid: 59c79da3b6f8f5f4e85ec85b8993bbae, type: 3}
   - {fileID: 7781017973442294146, guid: 7ab81894b19b05f4d8b4003eabe32bd0, type: 3}
+  swipeTolerance: 0.05
