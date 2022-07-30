@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
     
     public void LoadMainMenu()
     {
-        // Weird glitch
         StartCoroutine(LoadSceneAsync("MainMenu", 1f));
     }
 
