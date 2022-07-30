@@ -1,15 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     // Singleton
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set;}
     
     [SerializeField] private LoadingScreen loadingScreen;
-    [SerializeField] private Font openDyslexic;
     public bool usingDyslexic = false;
     
     private void Awake()
@@ -31,20 +30,12 @@ public class GameManager : MonoBehaviour
 
     private void LoadPrefs()
     {
+        TextHelper.LoadFont();
+        
         // If no key is found, create it (Default is false
         if (!PlayerPrefs.HasKey("Using Dyslexic")) PlayerPrefs.SetInt("Using Dyslexic", 0);
         
         if (PlayerPrefs.GetInt("Using Dyslexic") == 1) usingDyslexic = true;
-    }
-
-    public void FontsToDyslexic(Text[] texts)
-    {
-        // Changes all fonts to OpenDyslexic
-        
-        foreach (Text text in texts)
-        {
-            text.font = openDyslexic;
-        }
     }
 
     private IEnumerator LoadSceneAsync(string sceneName, float addedLoadTime) 

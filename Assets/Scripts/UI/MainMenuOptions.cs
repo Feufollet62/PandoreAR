@@ -24,7 +24,7 @@ public class MainMenuOptions : MonoBehaviour
         menuOptions.SetActive(true);
 
         allText = GetComponentsInChildren<Text>();
-        if(gm.usingDyslexic) gm.FontsToDyslexic(allText);
+        if(gm.usingDyslexic) TextHelper.FontsToDyslexic(allText);
         
         menuOptions.SetActive(false);
     }
@@ -49,7 +49,7 @@ public class MainMenuOptions : MonoBehaviour
         {
             PlayerPrefs.SetInt("Using Dyslexic", 1);
             gm.usingDyslexic = true;
-            gm.FontsToDyslexic(allText);
+            TextHelper.FontsToDyslexic(allText);
         }
         else
         {

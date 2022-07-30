@@ -37,7 +37,7 @@ public class PlaceObjectUI : MonoBehaviour
         ShowControlObject();
 
         Text[] allText = GetComponentsInChildren<Text>();
-        GameManager.Instance.FontsToDyslexic(allText);
+        TextHelper.FontsToDyslexic(allText);
         
         HidePlaceObject();
         HideControlObject();
