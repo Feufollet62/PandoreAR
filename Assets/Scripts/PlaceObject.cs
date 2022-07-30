@@ -12,10 +12,7 @@ public class PlaceObject : MonoBehaviour
     [SerializeField] private float rotationAngle = 45f;
     [SerializeField] private float scaleFactor = 2;
 
-    [Header("UI")]
-    [SerializeField] private GameObject buttonPlaceObject;
-    [SerializeField] private GameObject buttonControlObject;
-    
+    private PlaceObjectUI ui;
     private Camera mainCamera;
     private ARRaycastManager arRay;
     private Pose placementPose;
@@ -26,6 +23,7 @@ public class PlaceObject : MonoBehaviour
     
     private void Start()
     {
+        ui = FindObjectOfType<PlaceObjectUI>();
         mainCamera = Camera.main;
         arRay = FindObjectOfType<ARRaycastManager>();
     }
@@ -42,7 +40,7 @@ public class PlaceObject : MonoBehaviour
         if (raycastIsValid && Input.touchCount != 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             placedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
-            buttonControlObject.SetActive(true);
+            ui.ShowPlaceObject();
             raycastIsValid = false;
         }
     }
@@ -75,13 +73,13 @@ public class PlaceObject : MonoBehaviour
         if (raycastIsValid)
         {
             indicator.SetActive(true);
-            buttonPlaceObject.SetActive(true);
+            ui.ShowPlaceObject();
             indicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
         else
         {
             indicator.SetActive(false);
-            buttonPlaceObject.SetActive(false);
+            ui.HidePlaceObject();
         }
     }
 
