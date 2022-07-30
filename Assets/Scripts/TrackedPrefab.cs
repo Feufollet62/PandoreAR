@@ -4,8 +4,8 @@ public class TrackedPrefab : MonoBehaviour
 {
     // This script lets the user go through different 3D models by swiping left or right on their phone.
     // Users can also scale objects up/down by pinching.
-
-    [SerializeField] private GameObject[] prefabArray;
+    
+    [SerializeField] private ARObject[] objects;
     private GameObject currentGameObject;
     private int currentPrefabIndex = 0;
     
@@ -108,7 +108,7 @@ public class TrackedPrefab : MonoBehaviour
     private void NextObject()
     {
         currentPrefabIndex++;
-        if (currentPrefabIndex > prefabArray.Length - 1) currentPrefabIndex = 0; // Avoid overflow
+        if (currentPrefabIndex > objects.Length - 1) currentPrefabIndex = 0; // Avoid overflow
 
         LoadObject();
     }
@@ -116,7 +116,7 @@ public class TrackedPrefab : MonoBehaviour
     private void PreviousObject()
     {
         currentPrefabIndex--;
-        if (currentPrefabIndex < 0) currentPrefabIndex = prefabArray.Length - 1; // Avoid overflow
+        if (currentPrefabIndex < 0) currentPrefabIndex = objects.Length - 1; // Avoid overflow
 
         LoadObject();
     }
@@ -125,6 +125,10 @@ public class TrackedPrefab : MonoBehaviour
     {
         // Destroy old object and load new one
         if(currentGameObject) Destroy(currentGameObject);
-        currentGameObject = Instantiate(prefabArray[currentPrefabIndex], transform);
+        
+        currentGameObject = Instantiate(objects[currentPrefabIndex].prefab, transform);
+        
+        // Apply correct scale
+        transform.localScale = Vector3.one * objects[currentPrefabIndex].initialScale;
     }
 }

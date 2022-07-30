@@ -4,6 +4,7 @@ using UnityEngine;
 public class ARObject : ScriptableObject
 {
     public GameObject prefab;
+    
     public float initialScale;
 
     public string title;
