@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrackedPrefab : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class TrackedPrefab : MonoBehaviour
     
     //Pinching
     private float pinchInitialDistance;
-    private Vector3 pinchInitialScale;
+    private float pinchInitialScale;
     
     private void Start()
     {
@@ -73,9 +74,11 @@ public class TrackedPrefab : MonoBehaviour
             // User started pinching
             if(touchZero.phase == TouchPhase.Began || touchOne.phase == TouchPhase.Began)
             {
-                // track the initial values
+                // Track the initial values
                 pinchInitialDistance = Vector2.Distance(touchZero.position, touchOne.position);
-                pinchInitialScale = transform.localScale;
+                
+                // Scale is gonna be uniform so just take x
+                pinchInitialScale = transform.localScale.x;
             }
 
             // User is moving fingers or stationary
@@ -88,7 +91,19 @@ public class TrackedPrefab : MonoBehaviour
 
                 // Multiplication avoids negative scale
                 float factor = currentDistance / pinchInitialDistance;
-                transform.localScale = pinchInitialScale * factor;
+                transform.localScale = pinchInitialScale * factor * Vector3.one;
+
+                ARObject currentObj = objects[currentPrefabIndex];
+                
+                // Clamp between min and max possible value
+                if (transform.localScale.x < currentObj.minScale)
+                {
+                    transform.localScale = Vector3.one * currentObj.minScale;
+                }
+                if (transform.localScale.x > currentObj.maxScale)
+                {
+                    transform.localScale = Vector3.one * currentObj.maxScale;
+                }
             }
         }
     }

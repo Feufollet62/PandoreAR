@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8689760280453713793, guid: 59c79da3b6f8f5f4e85ec85b8993bbae, type: 3}
   initialScale: 1
+  minScale: 0.5
+  maxScale: 2
   title: "Les amants tr\xE9pass\xE9s"
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

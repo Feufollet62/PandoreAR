@@ -48,4 +48,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe24a062816794e42887dea925c6cedc, type: 2}
   - {fileID: 11400000, guid: 2e242fe5ad517ea49b7c96462b96da92, type: 2}
   - {fileID: 11400000, guid: d4b6ba08fae69aa4aa4895d396d1a5b1, type: 2}
-  swipeTolerance: 0.05
+  swipeTolerance: 0.15

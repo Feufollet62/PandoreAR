@@ -5,7 +5,9 @@ public class ARObject : ScriptableObject
 {
     public GameObject prefab;
     
-    public float initialScale;
+    public float initialScale = 1f;
+    public float minScale = .5f;
+    public float maxScale = 2f;
 
     public string title;
     public string description;

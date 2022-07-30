@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3311125065517116414, guid: 9d49f9cf4ce99fc40a221ce1d847de7b, type: 3}
   initialScale: 1
+  minScale: 0.25
+  maxScale: 2
   title: Presse Gutenberg
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

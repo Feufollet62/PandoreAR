@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: BasRelief
   m_EditorClassIdentifier: 
   prefab: {fileID: 7781017973442294146, guid: 7ab81894b19b05f4d8b4003eabe32bd0, type: 3}
-  initialScale: 0.1
+  initialScale: 0.05
+  minScale: 0.02
+  maxScale: 1
   title: Bas Relief
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
