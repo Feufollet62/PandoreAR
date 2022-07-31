@@ -45,6 +45,7 @@ public class PlaceObject : MonoBehaviour
             placedObject = Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
             ui.ShowControlObject();
             ui.HidePlaceObject();
+            indicator.SetActive(false);
         }
     }
 
