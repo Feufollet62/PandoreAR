@@ -8,6 +8,8 @@ public class TrackedPrefab : MonoBehaviour
     [SerializeField] private ARObject[] objects;
     private GameObject currentGameObject;
     private int currentPrefabIndex = 0;
+
+    [SerializeField] private GameObject infoIcon;
     
     // Touch controls
     [Range(0,1)] [SerializeField] private float swipeTolerance = .05f;
@@ -137,12 +139,18 @@ public class TrackedPrefab : MonoBehaviour
 
     private void LoadObject()
     {
+        ARObject obj = objects[currentPrefabIndex];
+        
         // Destroy old object and load new one
         if(currentGameObject) Destroy(currentGameObject);
         
-        currentGameObject = Instantiate(objects[currentPrefabIndex].prefab, transform);
+        currentGameObject = Instantiate(obj.prefab, transform);
         
         // Apply correct scale
-        transform.localScale = Vector3.one * objects[currentPrefabIndex].initialScale;
+        transform.localScale = Vector3.one * obj.initialScale;
+        
+        // Put info point on correct spot with correct scale
+        infoIcon.SetActive(true);
+        //infoIcon.transform = currentGameObject.
     }
 }
