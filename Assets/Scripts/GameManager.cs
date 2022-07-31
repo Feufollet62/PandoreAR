@@ -53,13 +53,15 @@ public class GameManager : MonoBehaviour
         // Wait for loading to be done and for ar session to be initialized or tracking (has camera feed in some way)
         while (!op.isDone)
         {
-            print(ARSession.state.ToString());
+            //print(ARSession.state.ToString());
             
-            if (!(ARSession.state == ARSessionState.SessionInitializing ||
+            /*if (!(ARSession.state == ARSessionState.SessionInitializing ||
                   ARSession.state == ARSessionState.SessionTracking))
             {
                 yield return null;
-            }
+            }*/
+            
+            yield return null;
         }
         
         loadingScreen.FadeOut();

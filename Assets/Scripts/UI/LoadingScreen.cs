@@ -23,7 +23,7 @@ public class LoadingScreen : MonoBehaviour
     private void Update()
     {
         ManageFade();
-
+        
         if(!isDisplayed) return;
         // Simple rotation around Y axis
         loadIconTransform.Rotate(Vector3.forward, -loadRotationSpeed * Time.deltaTime);
