@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private LoadingScreen loadingScreen;
     public bool usingDyslexic = false;
+
+    private ARSession session;
     
     private void Awake()
     {
@@ -47,14 +50,24 @@ public class GameManager : MonoBehaviour
         
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
 
+        // Wait for loading to be done and for ar session to be initialized or tracking (has camera feed in some way)
         while (!op.isDone)
         {
-            yield return null;
+            print(ARSession.state.ToString());
+            
+            if (!(ARSession.state == ARSessionState.SessionInitializing ||
+                  ARSession.state == ARSessionState.SessionTracking))
+            {
+                yield return null;
+            }
         }
-
-        // Subscribe this to ARSession.stateChanged ?
-        // So that loading screen fades away only when the camera is active
+        
         loadingScreen.FadeOut();
+    }
+
+    public void AssignARSession(ARSession newSession)
+    {
+        session = newSession;
     }
     
     public void LoadMainMenu()
