@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class InfoPoint : MonoBehaviour
 {
+    [SerializeField] private ARObject arObject;
     [SerializeField] private LayerMask mask;
+    
     private Camera cam;
+    private InfoPanel infoPanel;
 
     private void Start()
     {
         cam = Camera.main;
+        infoPanel = FindObjectOfType<InfoPanel>();
+        infoPanel.Close();
     }
 
     private void Update()
@@ -24,11 +29,10 @@ public class InfoPoint : MonoBehaviour
 
         if (thisTouch.phase == TouchPhase.Ended)
         {
-            print("zap");
             Ray ray = cam.ScreenPointToRay(thisTouch.position);
             if (Physics.Raycast(ray, 30f, mask))
             {
-                print("touched");
+                infoPanel.LoadUI(arObject);
             }
         }
     }

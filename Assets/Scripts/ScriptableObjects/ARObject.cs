@@ -12,5 +12,5 @@ public class ARObject : ScriptableObject
     public string title;
     public string description;
 
-    public Texture2D texture;
+    public Sprite sprite;
 }

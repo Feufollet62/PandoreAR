@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     {
         TextHelper.LoadFont();
         
-        // If no key is found, create it (Default is false
+        // If no key is found, create it (Default is false)
         if (!PlayerPrefs.HasKey("Using Dyslexic")) PlayerPrefs.SetInt("Using Dyslexic", 0);
         
         if (PlayerPrefs.GetInt("Using Dyslexic") == 1) usingDyslexic = true;
