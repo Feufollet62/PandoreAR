@@ -113,6 +113,7 @@ public class PlaceObject : MonoBehaviour
 
     public void Reset()
     {
+        FindObjectOfType<ARSession>().Reset();
         GameManager.Instance.LoadObjectPlacement();
     }
 }
