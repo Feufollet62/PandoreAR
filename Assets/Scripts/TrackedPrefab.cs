@@ -40,6 +40,7 @@ public class TrackedPrefab : MonoBehaviour
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
+            
             switch (touch.phase)
             {
                 // Initial touch position
@@ -111,7 +112,7 @@ public class TrackedPrefab : MonoBehaviour
 
     private void ProcessSwipe()
     {
-        // Swipe too small; ignore it (Should be scaled with screen resolution)
+        // Swipe too small; ignore it and register as touch input (Should be scaled with screen resolution)
         if(swipeDirection.magnitude < swipeTolerance * Screen.width) return;
         
         // Result is 1 if swipe is perfectly to the right, -1 if perfectly to the left
